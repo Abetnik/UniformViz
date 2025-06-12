@@ -12,7 +12,8 @@ export default function IntroCanvas({ onFinish }) {
   const [images, setImages] = useState([]);
   const [animationFinished, setAnimationFinished] = useState(false);
   const [hideIntro, setHideIntro] = useState(false);
-  const [maskZoomed, setMaskZoomed] = useState(false); // добавляем новое состояние
+  const [maskActive, setMaskActive] = useState(false);
+  const [maskZoomed, setMaskZoomed] = useState(false);
 
   // Загружаем PNG-секвенцию из /public
   useEffect(() => {
@@ -68,11 +69,12 @@ export default function IntroCanvas({ onFinish }) {
     animate();
   }, [images]);
 
-  // Кнопка перехода — маска увеличивается, интро исчезает
+  // Нажатие на кнопку включает маску и запускает её масштабирование
   const handleClick = () => {
-    setMaskZoomed(true); // запускаем анимацию увеличения маски
+    setMaskActive(true);
+    requestAnimationFrame(() => setMaskZoomed(true));
     setTimeout(() => {
-      setHideIntro(true); // скрываем интро через 1.6с
+      setHideIntro(true);
       if (onFinish) onFinish();
     }, 1600);
   };
@@ -81,7 +83,9 @@ export default function IntroCanvas({ onFinish }) {
   if (hideIntro) return null;
 
   return (
-    <div className={`${styles.wrapper} ${maskZoomed ? `${styles.maskApplied} ${styles.maskZoom}` : ''}`}>
+    <div
+      className={`${styles.wrapper} ${maskActive ? styles.maskApplied : ''} ${maskZoomed ? styles.maskZoom : ''}`}
+    >
 
       <div ref={logoWrapperRef} className={styles.logoMaskLayer}>
 
