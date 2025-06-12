@@ -27,6 +27,7 @@
     z-index: 2;
 }
 
+
 .logoMaskLayer {
     position: absolute;
     top: 50%;
@@ -37,11 +38,11 @@
     transition: transform 1.6s ease-in-out;
     z-index: 10;
 
-    -webkit-mask-image: url('/logoAlpha.png');
+    -webkit-mask-image: url('/logoAnim/logoAnim_00064.png');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: contain;
-    mask-image: url('/logoAlpha.png');
+    mask-image: url('/logoAnim/logoAnim_00064.png');
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: contain;
@@ -135,6 +136,18 @@
     transform: translateX(-50%);
     text-align: center;
     z-index: 1;
+}
+
+.maskApplied {
+    -webkit-mask-image: url('/logoAnim/logoAnim_00064.png');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url('/logoAnim/logoAnim_00064.png');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    transition: -webkit-mask-size 1.6s ease-in-out, mask-size 1.6s ease-in-out;
 }
 
 .maskZoom {

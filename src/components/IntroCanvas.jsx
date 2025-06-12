@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './IntroCanvas.module.css';
-import gsap from 'gsap';
 
 const FRAME_COUNT = 65;
 const pad = (n) => n.toString().padStart(5, '0');
 
 
 
-export default function IntroCanvas() {
+export default function IntroCanvas({ onFinish }) {
   const canvasRef = useRef(null);
   const logoWrapperRef = useRef(null);
   const [images, setImages] = useState([]);
@@ -71,19 +70,20 @@ export default function IntroCanvas() {
 
   // Кнопка перехода — маска увеличивается, интро исчезает
   const handleClick = () => {
-  setMaskZoomed(true); // запускаем анимацию увеличения маски
-  setTimeout(() => {
-    setHideIntro(true); // скрываем интро через 1.4с
-  }, 1400);
-};
+    setMaskZoomed(true); // запускаем анимацию увеличения маски
+    setTimeout(() => {
+      setHideIntro(true); // скрываем интро через 1.6с
+      if (onFinish) onFinish();
+    }, 1600);
+  };
 
 
   if (hideIntro) return null;
 
   return (
-    <div className={`${styles.wrapper} ${maskZoomed ? styles.maskZoom : ''}`}>
+    <div className={`${styles.wrapper} ${maskZoomed ? `${styles.maskApplied} ${styles.maskZoom}` : ''}`}>
 
-      <div ref={logoWrapperRef} className={`${styles.logoMaskLayer} ${maskZoomed ? styles.maskZoom : ''}`}>
+      <div ref={logoWrapperRef} className={styles.logoMaskLayer}>
 
         <canvas ref={canvasRef} className={styles.canvas} />
         </div>
