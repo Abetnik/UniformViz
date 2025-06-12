@@ -87,6 +87,9 @@ export default function IntroCanvas({ onFinish }) {
       className={`${styles.wrapper} ${maskActive ? styles.maskApplied : ''} ${maskZoomed ? styles.maskZoom : ''}`}
     >
 
+    <div className={styles.wrapper}>
+
+
       <div ref={logoWrapperRef} className={styles.logoMaskLayer}>
 
         <canvas ref={canvasRef} className={styles.canvas} />

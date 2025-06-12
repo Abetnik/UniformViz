@@ -34,7 +34,8 @@
     left: 50%;
     width: 220px;
     height: 220px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
     transition: transform 1.6s ease-in-out;
     z-index: 10;
 
@@ -151,6 +152,5 @@
 }
 
 .maskZoom {
-    -webkit-mask-size: 4000px !important;
-    mask-size: 4000px !important;
+    transform: translate(-50%, -50%) scale(20);
 }
