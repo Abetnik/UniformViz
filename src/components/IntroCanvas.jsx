@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './IntroCanvas.module.css';
-import gsap from 'gsap';
 
 const FRAME_COUNT = 65;
 const pad = (n) => n.toString().padStart(5, '0');
@@ -81,7 +80,7 @@ export default function IntroCanvas() {
   if (hideIntro) return null;
 
   return (
-    <div className={`${styles.wrapper} ${maskZoomed ? styles.maskZoom : ''}`}>
+    <div className={styles.wrapper}>
 
       <div ref={logoWrapperRef} className={`${styles.logoMaskLayer} ${maskZoomed ? styles.maskZoom : ''}`}>
 
